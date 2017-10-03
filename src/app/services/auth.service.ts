@@ -24,31 +24,31 @@ export class AuthService {
   }
 
   signup(user) {
-    return this.http.post(`http://localhost:3000/auth/signup`, user, this.requestOptions)
+    return this.http.post(`${apiUrl}/signup`, user, this.requestOptions)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   login(user) {
-    return this.http.post(`http://localhost:3000/auth/login`, user, this.requestOptions)
+    return this.http.post(`${apiUrl}/login`, user, this.requestOptions)
       .map((res) => res.json())
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.post(`http://localhost:3000/auth/logout`, {}, this.requestOptions)
+    return this.http.post(`${apiUrl}/logout`, {}, this.requestOptions)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   isLoggedIn() {
-    return this.http.get(`http://localhost:3000/auth/loggedin`, this.requestOptions)
+    return this.http.get(`${apiUrl}/loggedin`, this.requestOptions)
       .map((res) => res.json())
       .catch(this.handleError);
   }
 
   getPrivateData() {
-    return this.http.get(`http://localhost:3000/auth/private`, this.requestOptions)
+    return this.http.get(`${apiUrl}/private`, this.requestOptions)
       .map(res => res.json())
       .catch(this.handleError);
   }

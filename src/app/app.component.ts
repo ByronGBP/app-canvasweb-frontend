@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service'
+import { PaintingService } from './services/painting.service'
 
 import { User } from './models/user.model'
 
@@ -19,13 +20,15 @@ export class AppComponent implements OnInit {
   formPainting = {
     name: '',
     code: '',
+    ownerId: ''
   }
 
   error: string;
   privateData: any = '';
 
-  constructor(private session: AuthService) {
-    this.session.isLoggedIn()
+
+  constructor(private authService: AuthService, private paintingService: PaintingService) {
+    this.authService.isLoggedIn()
       .subscribe(
         (user) => this.successCb(user)
       );
@@ -36,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   login() {
-    this.session.login(this.formInfo)
+    this.authService.login(this.formInfo)
       .subscribe(
         (user) => this.successCb(user),
         (err) => this.errorCb(err)
@@ -44,7 +47,7 @@ export class AppComponent implements OnInit {
   }
 
   signup() {
-    this.session.signup(this.formInfo)
+    this.authService.signup(this.formInfo)
       .subscribe(
         (user) => this.successCb(user),
         (err) => this.errorCb(err)
@@ -52,7 +55,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.session.logout()
+    this.authService.logout()
       .subscribe(
         () => this.successCb(null),
         (err) => this.errorCb(err)
@@ -60,7 +63,7 @@ export class AppComponent implements OnInit {
   }
 
   getPrivateData() {
-    this.session.getPrivateData()
+    this.authService.getPrivateData()
       .subscribe(
         (data) => this.privateData = data,
         (err) => this.error = err
@@ -75,5 +78,16 @@ export class AppComponent implements OnInit {
   successCb(user) {
     this.user = user;
     this.error = null;
+  }
+
+  createNewPainting() {
+    console.log(typeof this.user.id);
+    this.formPainting.ownerId = this.user.id;
+    console.log(this.formPainting);
+    this.paintingService.createPainting(this.formPainting)
+      .subscribe(
+        (data) => console.log(data),
+        (err) => this.error = err
+      )
   }
 }
