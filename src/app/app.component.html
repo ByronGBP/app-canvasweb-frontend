@@ -22,4 +22,13 @@
   <button (click)="getPrivateData()"> Get private data </button>
 </div>
 
+<form *ngIf="user">
+  <h2> Add shet </h2>
+  <input type="text" [(ngModel)]="formPainting.name" name="name" placeholder="Name">
+  <br>
+  <textarea name="code" rows="50" cols="80" [(ngModel)]="formPainting.code"></textarea>
+
+  <button (click)="createNewPainting()"> Save Painting </button>
+</form>
+
 <p class="error"> {{ error }} </p>

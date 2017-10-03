@@ -10,20 +10,29 @@ import { User } from './models/user.model'
 })
 export class AppComponent implements OnInit {
   user: User;
+
   formInfo = {
     username: '',
     password: ''
   };
+
+  formPainting = {
+    name: '',
+    code: '',
+  }
+
   error: string;
   privateData: any = '';
 
-  constructor(private session: AuthService) { }
-
-  ngOnInit() {
+  constructor(private session: AuthService) {
     this.session.isLoggedIn()
       .subscribe(
         (user) => this.successCb(user)
       );
+  }
+
+  ngOnInit() {
+
   }
 
   login() {

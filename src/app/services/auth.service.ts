@@ -31,8 +31,7 @@ export class AuthService {
 
   login(user) {
     return this.http.post(`http://localhost:3000/auth/login`, user, this.requestOptions)
-      .map(res => {res.json();
-      })
+      .map((res) => res.json())
       .catch(this.handleError);
   }
 
@@ -44,7 +43,7 @@ export class AuthService {
 
   isLoggedIn() {
     return this.http.get(`http://localhost:3000/auth/loggedin`, this.requestOptions)
-      .map(res => res.json())
+      .map((res) => res.json())
       .catch(this.handleError);
   }
 
