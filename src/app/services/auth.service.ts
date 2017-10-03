@@ -20,7 +20,11 @@ export class AuthService {
    }
 
   handleError(e) {
+<<<<<<< HEAD
     return Observable.throw(e.json().message);
+=======
+    return Observable.throw(e.json().error);
+>>>>>>> dev
   }
 
   signup(user) {
@@ -31,7 +35,12 @@ export class AuthService {
 
   login(user) {
     return this.http.post(`http://localhost:3000/auth/login`, user, this.requestOptions)
+<<<<<<< HEAD
       .map(res => res.json())
+=======
+      .map(res => {res.json();
+      })
+>>>>>>> dev
       .catch(this.handleError);
   }
 
@@ -46,7 +55,11 @@ export class AuthService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dev
   getPrivateData() {
     return this.http.get(`http://localhost:3000/auth/private`, this.requestOptions)
       .map(res => res.json())

@@ -1,33 +1,57 @@
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+=======
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service'
+
+import { User } from './models/user.model'
+>>>>>>> dev
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+<<<<<<< HEAD
 export class AppComponent {
 
+=======
+export class AppComponent implements OnInit {
+  user: User;
+>>>>>>> dev
   formInfo = {
     username: '',
     password: ''
   };
+<<<<<<< HEAD
 
   user: any;
   error: string;
   privateData: any = ''
 
   constructor(private session: AuthService) {
+=======
+  error: string;
+  privateData: any = '';
+
+  constructor(private session: AuthService) { }
+
+  ngOnInit() {
+>>>>>>> dev
     this.session.isLoggedIn()
       .subscribe(
         (user) => this.successCb(user)
       );
   }
 
+<<<<<<< HEAD
   ngOnInit() {
 
   }
 
+=======
+>>>>>>> dev
   login() {
     this.session.login(this.formInfo)
       .subscribe(
