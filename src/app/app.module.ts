@@ -12,6 +12,9 @@ import { PaintingService } from './services/painting.service';
 import { PlaygroundPageComponent } from './pages/playground-page/playground-page.component';
 
 import { PaintingCardComponent } from './components/painting-card/painting-card.component';
+import { ProjectPageComponent } from './pages/project-page/project-page.component';
+import { CodeFieldComponent } from './components/code-field/code-field.component';
+import { RenderFieldComponent } from './components/render-field/render-field.component';
 
 const routes: Routes = [
   { path: 'playground', component: PlaygroundPageComponent },
@@ -22,7 +25,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     PlaygroundPageComponent,
-    PaintingCardComponent
+    PaintingCardComponent,
+    ProjectPageComponent,
+    CodeFieldComponent,
+    RenderFieldComponent
   ],
   imports: [
     BrowserModule,
