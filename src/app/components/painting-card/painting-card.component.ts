@@ -15,8 +15,4 @@ export class PaintingCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
-
-  edit(name, code, id) {
-    console.log(name, code, id);
-  }
 }

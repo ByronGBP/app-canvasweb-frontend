@@ -38,4 +38,10 @@ export class PaintingService {
        .map(res => res.json())
        .catch(this.handleError);
    }
+
+   getPaintingWithId(id){
+     return this.http.get(`${apiUrl}/${id}`, this.requestOptions)
+      .map(res => res.json())
+      .catch(this.handleError);
+   }
 }

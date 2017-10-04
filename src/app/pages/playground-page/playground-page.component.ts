@@ -98,14 +98,14 @@ export class PlaygroundPageComponent implements OnInit {
 
   edit(name, code, id) {
 
-    let painting = new Painting ({
+    let newPainting = new Painting ({
       id,
       name,
       code,
       ownerId: this.user.id
     })
 
-    this.paintingService.editPainting(painting)
+    this.paintingService.editPainting(newPainting)
       .subscribe(
         (data) => console.log(data),
         (err) => this.error = err

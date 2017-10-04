@@ -1,3 +1,6 @@
-<p>
-  code-field works!
-</p>
+
+
+<h2>{{painting.name}}</h2>
+<ng-container *ngIf="painting && notDone">{{setCodeToEditor()}}</ng-container>
+<div id="editor-js" #editor ></div>
+<button (click)="handleClickEditor()">Edit</button>
