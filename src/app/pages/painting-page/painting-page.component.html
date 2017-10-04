@@ -1,0 +1,11 @@
+
+<div *ngIf="painting">
+
+  <app-code-field [painting]="painting"></app-code-field>
+  <app-render-field></app-render-field>
+
+</div>
+
+<div *ngIf="!painting" class="loading">
+some eally cool loading gif
+</div>
