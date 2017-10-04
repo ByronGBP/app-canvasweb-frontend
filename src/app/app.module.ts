@@ -11,6 +11,8 @@ import { PaintingService } from './services/painting.service';
 
 import { PlaygroundPageComponent } from './pages/playground-page/playground-page.component';
 
+import { PaintingCardComponent } from './components/painting-card/painting-card.component';
+
 const routes: Routes = [
   { path: 'playground', component: PlaygroundPageComponent },
   { path: '', component: AppComponent },
@@ -19,7 +21,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    PlaygroundPageComponent
+    PlaygroundPageComponent,
+    PaintingCardComponent
   ],
   imports: [
     BrowserModule,

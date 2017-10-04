@@ -1,3 +1,5 @@
+
+
 <h1> Authentication Sample </h1>
 <form *ngIf="!user">
   <h2> Login or Signup </h2>
@@ -33,15 +35,9 @@
 
 <div *ngIf="user">
   <h2> Paintings </h2>
+
   <div *ngFor = "let painting of paintings">
-    <form>
-      <div>{{painting.id}}</div>
-      <input type="text" [value]="painting.name" name="name" placeholder="Name" #namePainting>
-      <br>
-      <textarea [value]="painting.code" name="code" rows="10" cols="80" #codePainting></textarea>
-      <br>
-      <button (click)="edit(namePainting.value, codePainting.value, painting._id)"> Edit Painting </button>
-    </form>
+    <app-painting-card [painting]="painting"></app-painting-card>
   </div>
 </div>
 

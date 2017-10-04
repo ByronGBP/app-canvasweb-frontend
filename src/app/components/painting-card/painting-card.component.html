@@ -1,0 +1,8 @@
+<form>
+  <div>{{painting.name}}</div>
+  <input type="text" [value]="painting.name" name="name" placeholder="Name" #namePainting>
+  <br>
+  <textarea [value]="painting.code" name="code" rows="10" cols="80" #codePainting></textarea>
+  <br>
+  <button (click)="edit(namePainting.value, codePainting.value, painting._id)"> Edit Painting </button>
+</form>
