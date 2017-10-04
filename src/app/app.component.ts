@@ -3,6 +3,7 @@ import { AuthService } from './services/auth.service'
 import { PaintingService } from './services/painting.service'
 
 import { User } from './models/user.model'
+import { Painting } from './models/painting.model'
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,8 @@ export class AppComponent implements OnInit {
     ownerId: ''
   }
 
+  paintings: Painting[] = [];
+
   error: string;
   privateData: any = '';
 
@@ -31,6 +34,10 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn()
       .subscribe(
         (user) => this.successCb(user)
+      );
+    this.paintingService.getPaintings()
+      .subscribe(
+        (paintings) => this.paintings = paintings
       );
   }
 
@@ -81,10 +88,24 @@ export class AppComponent implements OnInit {
   }
 
   createNewPainting() {
-    console.log(typeof this.user.id);
     this.formPainting.ownerId = this.user.id;
-    console.log(this.formPainting);
     this.paintingService.createPainting(this.formPainting)
+      .subscribe(
+        (data) => console.log(data),
+        (err) => this.error = err
+      )
+  }
+
+  edit(name, code, id) {
+
+    let painting = new Painting ({
+      id,
+      name,
+      code,
+      ownerId: this.user.id
+    })
+
+    this.paintingService.editPainting(painting)
       .subscribe(
         (data) => console.log(data),
         (err) => this.error = err

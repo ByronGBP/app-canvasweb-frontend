@@ -26,9 +26,26 @@
   <h2> Add shet </h2>
   <input type="text" [(ngModel)]="formPainting.name" name="name" placeholder="Name">
   <br>
-  <textarea name="code" rows="50" cols="80" [(ngModel)]="formPainting.code"></textarea>
+  <textarea name="code" rows="10" cols="80" [(ngModel)]="formPainting.code"></textarea>
 
   <button (click)="createNewPainting()"> Save Painting </button>
 </form>
+
+<div *ngIf="user">
+  <h2> Paintings </h2>
+  <div *ngFor = "let painting of paintings">
+    <form>
+      <div>{{painting.id}}</div>
+      <input type="text" [value]="painting.name" name="name" placeholder="Name" #namePainting>
+      <br>
+      <textarea [value]="painting.code" name="code" rows="10" cols="80" #codePainting></textarea>
+      <br>
+      <button (click)="edit(namePainting.value, codePainting.value, painting._id)"> Edit Painting </button>
+    </form>
+  </div>
+
+
+
+</div>
 
 <p class="error"> {{ error }} </p>

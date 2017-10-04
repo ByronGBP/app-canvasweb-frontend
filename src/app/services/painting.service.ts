@@ -21,6 +21,18 @@ export class PaintingService {
      return Observable.throw(e.json().error);
    }
 
+   getPaintings(){
+     return this.http.get(`${apiUrl}`, this.requestOptions)
+      .map(res => res.json())
+      .catch(this.handleError);
+   }
+
+   editPainting(painting){
+     return this.http.post(`${apiUrl}/${painting.id}`, painting, this.requestOptions)
+      .map(res => res.json())
+      .catch(this.handleError);
+   }
+
    createPainting(painting) {
      return this.http.post(`${apiUrl}`, painting, this.requestOptions)
        .map(res => res.json())
