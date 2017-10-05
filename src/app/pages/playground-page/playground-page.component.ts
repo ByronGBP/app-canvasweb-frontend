@@ -13,16 +13,11 @@ import { Painting } from '../../models/painting.model'
 export class PlaygroundPageComponent implements OnInit {
   user: User;
 
-  formInfo = {
-    username: '',
-    password: ''
-  };
-
   formPainting = {
     name: '',
     code: '',
     ownerId: ''
-  }
+  };
 
   paintings: Painting[] = [];
 
@@ -43,30 +38,6 @@ export class PlaygroundPageComponent implements OnInit {
 
   ngOnInit() {
 
-  }
-
-  login() {
-    this.authService.login(this.formInfo)
-      .subscribe(
-        (user) => this.successCb(user),
-        (err) => this.errorCb(err)
-      );
-  }
-
-  signup() {
-    this.authService.signup(this.formInfo)
-      .subscribe(
-        (user) => this.successCb(user),
-        (err) => this.errorCb(err)
-      );
-  }
-
-  logout() {
-    this.authService.logout()
-      .subscribe(
-        () => this.successCb(null),
-        (err) => this.errorCb(err)
-      );
   }
 
   getPrivateData() {
