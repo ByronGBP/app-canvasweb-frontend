@@ -16,40 +16,42 @@ declare var ace:any;
   styleUrls: ['./code-field.component.css'],
 })
 export class CodeFieldComponent implements OnInit {
-  @Input() painting: any;
+
+  private _painting: any;
+
+  @Input() set painting(painting: any) {
+    this._painting = painting;
+    this.setupAceEditor();
+    this.setCodeToEditor();
+  }
 
   @ViewChild('editor') editor;
   aceEditor:any;
-  notDone:boolean = true
-  constructor(private paintingService: PaintingService) {
 
+  constructor(private paintingService: PaintingService) { }
+
+  ngOnInit() { }
+
+  setCodeToEditor() {
+    this.aceEditor.setValue(this._painting.code);
   }
 
-  ngOnInit() {
+  handleClickEditor() {
+    this.savePainting();
+  }
 
+  private setupAceEditor() {
     this.aceEditor = ace.edit(this.editor.nativeElement);
     this.aceEditor.session.setMode('ace/mode/javascript')
     this.aceEditor.setTheme("ace/theme/terminal");
     this.aceEditor.$blockScrolling = Infinity;
   }
 
-  setCodeToEditor() {
-    this.aceEditor.setValue(this.painting.code);
-    this.notDone = false;
-  }
-
-  handleClickEditor() {
-
-    this.savePainting();
-
-  }
-
   private savePainting() {
-
-    let id = this.painting._id;
-    let name = this.painting.name;
+    let id = this._painting._id;
+    let name = this._painting.name;
     let code = this.aceEditor.getValue();
-    let ownerId = this.painting.ownerId;
+    let ownerId = this._painting.ownerId;
 
     let newPainting = new Painting ({
       id,
