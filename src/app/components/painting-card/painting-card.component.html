@@ -1,4 +1,5 @@
 <div>
   <h3>{{painting.name}}</h3>
+  <app-render-field [painting]="painting"></app-render-field>
   <a [routerLink]="['/painting', painting._id]">View details</a>
 </div>
