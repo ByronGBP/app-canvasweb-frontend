@@ -1,6 +1,6 @@
 
 <ng-container *ngIf="painting">
-  <h2>{{painting.name}}</h2>
+  <input type="text" [(ngModel)]="painting.name" (value)="painting.name" placeholder="Put a F name!">
 
   <div class="painting-page">
     <app-code-field [painting]="painting" class="code-field"></app-code-field>
