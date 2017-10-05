@@ -1,9 +1,9 @@
 
-<div *ngIf="painting">
+<h2>{{painting.name}}</h2>
 
-  <app-code-field [painting]="painting"></app-code-field>
-  <app-render-field></app-render-field>
-
+<div *ngIf="painting" class="painting-page">
+  <app-code-field [painting]="painting" class="code-field"></app-code-field>
+  <app-render-field [painting]="painting" class="render-field"></app-render-field>
 </div>
 
 <div *ngIf="!painting" class="loading">

@@ -15,6 +15,7 @@ import { PaintingCardComponent } from './components/painting-card/painting-card.
 import { CodeFieldComponent } from './components/code-field/code-field.component';
 import { RenderFieldComponent } from './components/render-field/render-field.component';
 
+import { SafePipe } from './pipes/safe-pipe';
 
 const routes: Routes = [
   { path: 'playground', component: PlaygroundPageComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
     CodeFieldComponent,
     RenderFieldComponent,
     PaintingPageComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,

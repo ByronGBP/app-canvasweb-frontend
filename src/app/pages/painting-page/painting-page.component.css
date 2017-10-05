@@ -1,0 +1,21 @@
+
+.code-field{
+  position: relative;
+  width: 50vw;
+  height: 100vh;
+}
+
+.render-field{
+  position: relative;
+  width: 50vw;
+  height: 100vh;
+}
+
+.painting-page{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: stretch;
+}

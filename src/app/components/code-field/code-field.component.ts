@@ -27,7 +27,6 @@ export class CodeFieldComponent implements OnInit {
 
   ngOnInit() {
 
-    this.editor.nativeElement.style.height = '500px';
     this.aceEditor = ace.edit(this.editor.nativeElement);
     this.aceEditor.session.setMode('ace/mode/javascript')
     this.aceEditor.setTheme("ace/theme/terminal");
