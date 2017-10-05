@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service'
-import { PaintingService } from './services/painting.service'
 
 import { User } from './models/user.model'
-import { Painting } from './models/painting.model'
 
 @Component({
   selector: 'app-root',
@@ -12,10 +10,29 @@ import { Painting } from './models/painting.model'
 })
 
 export class AppComponent implements OnInit {
-  constructor() {
+
+  user: User;
+
+  constructor(private authService: AuthService) {
+    this.authService.isLoggedIn()
+      .subscribe(
+        (user) => this.user=user
+      );
   }
 
   ngOnInit() {
 
+  }
+
+  handleClickLogout() {
+    this.logout();
+  }
+
+  private logout() {
+    this.authService.logout()
+      .subscribe(
+        () => this.user=null,
+        (err) => console.log(err)
+    );
   }
 }

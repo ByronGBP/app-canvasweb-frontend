@@ -67,6 +67,14 @@ export class PlaygroundPageComponent implements OnInit {
       )
   }
 
+  logout() {
+  this.authService.logout()
+    .subscribe(
+      () => this.successCb(null),
+      (err) => this.errorCb(err)
+    );
+}
+
   edit(name, code, id) {
 
     let newPainting = new Painting ({
