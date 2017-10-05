@@ -1,11 +1,12 @@
 
-<h2>{{painting.name}}</h2>
+<ng-container *ngIf="painting">
+  <h2>{{painting.name}}</h2>
 
-<div *ngIf="painting" class="painting-page">
-  <app-code-field [painting]="painting" class="code-field"></app-code-field>
-  <app-render-field [painting]="painting" class="render-field"></app-render-field>
+  <div class="painting-page">
+    <app-code-field [painting]="painting" class="code-field"></app-code-field>
+    <app-render-field [painting]="painting" class="render-field"></app-render-field>
 </div>
-
+</ng-container>
 <div *ngIf="!painting" class="loading">
 some eally cool loading gif
 </div>
