@@ -11,7 +11,6 @@ import { PaintingService } from './services/painting.service';
 import { PlaygroundPageComponent } from './pages/playground-page/playground-page.component';
 import { PaintingPageComponent } from './pages/painting-page/painting-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 
 import { PaintingCardComponent } from './components/painting-card/painting-card.component';
 import { CodeFieldComponent } from './components/code-field/code-field.component';
@@ -19,11 +18,9 @@ import { RenderFieldComponent } from './components/render-field/render-field.com
 
 import { SafePipe } from './pipes/safe-pipe';
 import { PaintingListComponent } from './components/painting-list/painting-list.component';
-import { AuthCardComponent } from './components/auth-card/auth-card.component';
 
 const routes: Routes = [
   { path: 'playground', component: PlaygroundPageComponent },
-  { path: 'auth', component: AuthPageComponent },
   { path: 'home', component: HomePageComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'painting', children: [
@@ -43,8 +40,6 @@ const routes: Routes = [
     SafePipe,
     HomePageComponent,
     PaintingListComponent,
-    AuthPageComponent,
-    AuthCardComponent,
   ],
   imports: [
     BrowserModule,

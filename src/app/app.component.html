@@ -1,8 +1,27 @@
 <div class="nav-bar">
   <a [routerLink]="['/home']">Home</a>
-
-  <a *ngIf="!user"[routerLink]="['/auth']">Login</a>
+  <a *ngIf="!user" (click)="handleClickLogin()">Login</a>
   <a *ngIf="user" (click)="handleClickLogout()">Logout</a>
+</div>
+<ng-container *ngIf="user">
+  <button (click)="handleNewButtonClick()">New sht</button>
+</ng-container>
+<br>
+<br>
+<div class="auth-form" *ngIf="showAuthForm">
+  <h1> Authentication </h1>
+  <form>
+    <h2> Login or Signup </h2>
+    <label> Username </label>
+    <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+    <br>
+    <label> Password </label>
+    <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+
+    <button (click)="handleClickForLogin()"> login </button>
+    <button (click)="handleClickForSignup()"> signup </button>
+  </form>
+  <p class="error"> {{ error }} </p>
 </div>
 
 <router-outlet></router-outlet>

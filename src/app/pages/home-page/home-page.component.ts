@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { PaintingService } from '../../services/painting.service'
 import { AuthService } from '../../services/auth.service'
@@ -15,9 +14,9 @@ import { User } from '../../models/user.model'
 export class HomePageComponent implements OnInit {
 
   paintings: Painting[];
-  user: User;
+  @Input() user: User;
 
-  constructor(private authService: AuthService, private paintingService: PaintingService, private router: Router) { }
+  constructor(private authService: AuthService, private paintingService: PaintingService) { }
 
   ngOnInit() {
     this.paintingService.getPaintings()
@@ -28,27 +27,5 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         (user) => this.user = user
     );
-  }
-
-  handleNewButtonClick() {
-    this.createNewPainting();
-  }
-
-  private createNewPainting() {
-    let newPainting = new Painting({
-      name: 'New Sht',
-      code: 'var a = "AND NOTHING ELSE!"',
-      ownerId: this.user.id
-    });
-
-    this.paintingService.createPainting(newPainting)
-      .subscribe(
-        (data) => this.goToPaintingPage(data.id),
-        (err) => console.log(err)
-      )
-  }
-
-  goToPaintingPage(id) {
-    this.router.navigate(['/painting', id]);
   }
 }

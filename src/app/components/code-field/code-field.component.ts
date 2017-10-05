@@ -7,9 +7,6 @@ import { PaintingService } from '../../services/painting.service'
 
 declare var ace:any;
 
-
-//TODO:- Fix error when change the value of var notDone
-
 @Component({
   selector: 'app-code-field',
   templateUrl: './code-field.component.html',
@@ -28,7 +25,8 @@ export class CodeFieldComponent implements OnInit {
   @ViewChild('editor') editor;
   aceEditor:any;
 
-  constructor(private paintingService: PaintingService) { }
+  constructor(private paintingService: PaintingService) {
+  }
 
   ngOnInit() { }
 
@@ -38,6 +36,11 @@ export class CodeFieldComponent implements OnInit {
 
   handleClickEditor() {
     this.savePainting();
+    this.refresh();
+  }
+
+  private refresh(): void {
+    window.location.reload();
   }
 
   private setupAceEditor() {
