@@ -1,5 +1,6 @@
 <div class="nav-bar">
   <a [routerLink]="['/home']">Home</a>
+  <a [routerLink]="['/canvas']">Canvas</a>
   <a *ngIf="!user" (click)="handleClickLogin()">Login</a>
   <a *ngIf="user" (click)="handleClickLogout()">Logout</a>
 </div>
@@ -9,7 +10,6 @@
 <br>
 <br>
 <div class="auth-form" *ngIf="showAuthForm">
-  <h1> Authentication </h1>
   <form>
     <h2> Login or Signup </h2>
     <label> Username </label>
