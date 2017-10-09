@@ -4,12 +4,15 @@ import { Painting } from '../models/painting.model'
 
 import { Particle } from './particle'
 import { Particles } from './particles'
+import { Circle } from './circle'
+import { Circles } from './circles'
 
 export class Canvas {
 
   allTheCodes: Function[] = [];
 
   particles:Particles
+  circles:Circles;
 
   currentDimension;
   canvas;
@@ -19,10 +22,14 @@ export class Canvas {
 
   _interval;
 
+  animations:any[] = [];
+
   constructor(private paintings: string[]) {
     this.setupDimensions();
     this.setupTheCodes();
     this.setupCanvas();
+
+    this.circles = new Circles(this.canvasCtx);
   }
 
   demoParticle() {
@@ -33,7 +40,6 @@ export class Canvas {
 
       this.particles = new Particles(this.canvasCtx, 20);
       this._interval = setInterval(() => {
-        console.log('running');
         if(!this.particles.ended()) {
           this.particles.render();
         }else {
@@ -43,6 +49,29 @@ export class Canvas {
       }, 10);
 
   }
+
+  demoCircle(x) {
+    if (this._interval) {
+      clearInterval(this._interval);
+    }
+
+    var posX = this.currentDimension.width / 4 * x;
+    var newCircle = new Circle(this.canvasCtx,posX, this.currentDimension.height / 4 * 3);
+    this.circles.push(newCircle);
+
+    this._interval = setInterval(() => {
+      console.log(this.circles.circles);
+      console.log(this.circles.ended());
+      if(!this.circles.ended()) {
+        console.log('wtf');
+        this.circles.render();
+      }else {
+        clearInterval(this._interval);
+        this._interval = null;
+      }
+    }, 10);
+  }
+
 
   clearCanvas() {
     this.canvasCtx.clearRect(0,0, this.currentDimension.width, this.currentDimension.height);
@@ -80,12 +109,17 @@ export class Canvas {
                                                        this.currentDimension.halfWidth,
                                                        this.currentDimension.halfWidth,
                                                        this.currentDimension.halfHeight,
-                                                       0,);
-      gradient.addColorStop(0,"white");
+                                                       this.currentDimension.halfWidth / 2,);
+      gradient.addColorStop(0,"#505050");
       gradient.addColorStop(1,"black");
       this.canvasBgCtx.fillStyle = gradient;
       this.canvasBgCtx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
   }
+
+
+
+
+
 
   private setupCanvas() {
     this.canvas = document.getElementById('canvas');

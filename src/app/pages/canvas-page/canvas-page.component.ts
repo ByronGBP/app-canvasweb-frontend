@@ -37,6 +37,11 @@ export class CanvasPageComponent implements OnInit {
 
         this.C.demoBackground();
       }
+
+      if (ev.key == 'd') {
+
+        this.C.demoCircle(1);
+      }
   }
 
   constructor(private paintingService: PaintingService) { }

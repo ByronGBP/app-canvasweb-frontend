@@ -20,7 +20,6 @@ export class Particle {
   }
 
   draw(ctx) {
-    // Create the shapes
     ctx.beginPath();
     ctx.fillStyle="#FFFFFF";
 
