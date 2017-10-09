@@ -1,0 +1,18 @@
+#canvas-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#canvas {
+  position: absolute;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+}
+
+#bg-canvas {
+  position:absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+}

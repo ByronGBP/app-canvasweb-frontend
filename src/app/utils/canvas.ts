@@ -1,53 +1,118 @@
 import { HostListener } from '@angular/core';
 
-declare var p5:any;
+import { Painting } from '../models/painting.model'
+
+import { Particle } from './particle'
+import { Particles } from './particles'
 
 export class Canvas {
 
-  P;
+  allTheCodes: Function[] = [];
 
-  currentFigures;
+  particles:Particles
 
-  setupCanvas() {
-    const s = (p) => {
+  currentDimension;
+  canvas;
+  canvasCtx;
+  canvasBg;
+  canvasBgCtx;
 
-      let canvas;
+  _interval;
 
-      p.setup = () => {
-        canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-        canvas.parent('canvas-container')
-        p.background(0);
+  constructor(private paintings: string[]) {
+    this.setupDimensions();
+    this.setupTheCodes();
+    this.setupCanvas();
+  }
+
+  demoParticle() {
+
+      if (this._interval) {
+        clearInterval(this._interval);
       }
+
+      this.particles = new Particles(this.canvasCtx, 20);
+      this._interval = setInterval(() => {
+        console.log('running');
+        if(!this.particles.ended()) {
+          this.particles.render();
+        }else {
+          clearInterval(this._interval);
+          this._interval = null;
+        }
+      }, 10);
+
+  }
+
+  clearCanvas() {
+    this.canvasCtx.clearRect(0,0, this.currentDimension.width, this.currentDimension.height);
+  }
+
+  clearCanvasBg() {
+    this.canvasBgCtx.clearRect(0,0, this.currentDimension.width, this.currentDimension.height);
+
+    this.canvasBgCtx.fillStyle = '#000000';
+    this.canvasBgCtx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
+  }
+
+  drawPeaceOfCode(){
+    this.allTheCodes[5](null);
+  }
+
+  demoBackground() {
+
+    var gradient = this.canvasCtx.createRadialGradient(this.currentDimension.halfWidth,
+                                                       this.currentDimension.halfHeight,
+                                                       this.currentDimension.halfWidth,
+                                                       this.currentDimension.halfWidth,
+                                                       this.currentDimension.halfHeight,
+                                                       0,);
+      gradient.addColorStop(0,"black");
+      gradient.addColorStop(1,"white");
+      this.canvasBgCtx.fillStyle = gradient;
+      this.canvasBgCtx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
+  }
+
+  demoBackground2() {
+
+    var gradient = this.canvasCtx.createRadialGradient(this.currentDimension.halfWidth,
+                                                       this.currentDimension.halfHeight,
+                                                       this.currentDimension.halfWidth,
+                                                       this.currentDimension.halfWidth,
+                                                       this.currentDimension.halfHeight,
+                                                       0,);
+      gradient.addColorStop(0,"white");
+      gradient.addColorStop(1,"black");
+      this.canvasBgCtx.fillStyle = gradient;
+      this.canvasBgCtx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
+  }
+
+  private setupCanvas() {
+    this.canvas = document.getElementById('canvas');
+    this.canvasCtx = this.canvas.getContext('2d');
+    this.canvasCtx.canvas.width  = this.currentDimension.width;
+    this.canvasCtx.canvas.height = this.currentDimension.height;
+
+    this.canvasBg = document.getElementById('bg-canvas');
+    this.canvasBgCtx = this.canvasBg.getContext('2d');
+    this.canvasBgCtx.canvas.width  = this.currentDimension.width;
+    this.canvasBgCtx.canvas.height = this.currentDimension.height;
+
+  }
+
+  private setupDimensions() {
+    this.currentDimension = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      halfWidth: window.innerWidth / 2,
+      halfHeight: window.innerHeight / 2
     }
-
-    this.P = new p5(s);
   }
 
-  cleanCanvas() {
-    this.P.clear();
-  }
-
-  drawCircle() {
-    this.P.stroke(0, 102, 153);
-    this.P.ellipse(66, 50, 33, 33);
-  }
-
-  drawStuff() {
-    this.P.ellipse(50, 50, 33, 33);  // Left circle
-
-    this.P.push();  // Start a new drawing state
-    this.P.strokeWeight(10);
-    this.P.fill(204, 153, 0);
-    this.P.ellipse(33, 50, 33, 33);  // Left-middle circle
-
-    this.P.push();  // Start another new drawing state
-    this.P.stroke(0, 102, 153);
-    this.P.ellipse(66, 50, 33, 33);  // Right-middle circle
-    this.P.pop();  // Restore previous state
-
-    this.P.pop();  // Restore original state
-
-    this.P.ellipse(100, 50, 33, 33);  // Right circle
+  private setupTheCodes() {
+    this.paintings.forEach((painting) => {
+      this.allTheCodes.push(new Function('ctx', painting))
+    });
   }
 
 }
