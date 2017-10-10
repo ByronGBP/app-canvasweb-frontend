@@ -19,7 +19,8 @@ let KeyCode = {
   piano7: 'l',
   piano8: 'ñ',
   text: 'n',
-  guitar:'z'
+  guitar:'z',
+  guitar2:'x',
 
 }
 
@@ -99,7 +100,7 @@ export class CanvasPageComponent implements OnInit {
       }
 
       if (key === KeyCode.guitar) {
-        this.C.demoLineSinus();
+        this.C.demoLines();
       }
   }
 

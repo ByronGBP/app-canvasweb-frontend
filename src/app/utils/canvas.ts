@@ -9,6 +9,7 @@ import { Rectangles } from './rectangles'
 import { Gradients } from './gradients'
 import { LineSinus } from './lineSinus'
 import { LineCosinus } from './lineCosinus'
+import { Lines } from './lines'
 
 export class Canvas {
 
@@ -17,7 +18,7 @@ export class Canvas {
   particles:Particles
   rectangles:Rectangles;
   gradients:Gradients;
-  line:LineSinus;
+  lines:Lines;
 
   currentDimension;
 
@@ -40,30 +41,27 @@ export class Canvas {
 
     this.rectangles = new Rectangles(this.canvasPianoCtx);
     this.gradients = new Gradients(this.canvasDrumsCtx);
-    this.line = new LineSinus(this.canvasGuitarCtx);
+    this.lines = new Lines(this.canvasGuitarCtx);
   }
 
-  demoLineSinus() {
-
-    this.line = new LineSinus(this.canvasGuitarCtx);
-
+  demoLines() {
+    this.lines.push();
     this.canvasGuitarCtx.beginPath();
 
     if (this._intervalGuitar) {
-      this.line.clearCanvas();
+      this.lines.clearCanvas();
       clearInterval(this._intervalGuitar);
     }
 
     this._intervalGuitar = setInterval(() => {
-      if(this.line.isAlive()) {
+      if(!this.lines.ended()) {
         //cool effect
-        //this.line.clearCanvas();
-        this.line.update();
-        this.line.draw();
+        //this.lines.clearCanvas();
+        this.lines.render();
       }else {
         clearInterval(this._intervalGuitar);
         this._intervalGuitar = null;
-        this.line.clearCanvas();
+        this.lines.clearCanvas();
       }
     }, 5);
   }

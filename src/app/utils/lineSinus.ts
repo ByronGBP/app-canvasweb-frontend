@@ -13,11 +13,12 @@ export class LineSinus {
 
   currentDimension;
 
-  constructor(private ctx) {
+  constructor(private ctx, y) {
+
     this.setupDimensions();
 
     this.yAxis = 0;
-    this.xAxis = this.currentDimension.halfHeight;
+    this.xAxis = y
     this.units = 25;
 
     this.life = 0;
@@ -42,9 +43,9 @@ export class LineSinus {
   draw() {
 
     this.ctx.lineTo(this.life, this.units * this.posY + this.xAxis);
-    this.ctx.strokeStyle = 'black';
-    this.ctx.fillStyle = 'white';
-    this.ctx.fill();
+    this.ctx.strokeStyle = 'white';
+    // this.ctx.fillStyle = 'white';
+    // this.ctx.fill();
     this.ctx.stroke();
 
   }
