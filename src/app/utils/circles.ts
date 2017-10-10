@@ -3,7 +3,7 @@ import { Circle } from './circle'
 export class Circles {
 
 
-  circles:any[] = [];
+  circles:any[] = [,,,];
 
   currentDimension;
 
@@ -13,36 +13,44 @@ export class Circles {
 
   render() {
     this.clearCanvas();
-    this.updateParticles();
-    this.checkParticles();
-    this.drawParticles();
+    this.updateCircles();
+    this.checkCircles();
+    this.drawCircles();
   }
 
   ended() {
-    return this.circles.length === 0;
+    var ended = true;
+    this.circles.forEach((elem) => {
+      if (elem) {
+        ended = false;
+      }
+    })
+    return ended;
   }
 
-  push(circle) {
-    this.circles.push(circle);
+  push(circle, x) {
+    console.log(x);
+    this.circles[x] = null;
+    this.circles[x] = circle;
   }
 
   clearCanvas() {
     this.ctx.clearRect(0,0, this.currentDimension.width, this.currentDimension.height);
   }
 
-  private updateParticles() {
+  private updateCircles() {
     this.circles.map((circle) => {
       circle.update();
     })
   }
 
-  private drawParticles() {
+  private drawCircles() {
     this.circles.forEach((circle) => {
       circle.draw(this.ctx);
     })
   }
 
-  private checkParticles() {
+  private checkCircles() {
     return  this.circles.map((circle, i) => {
       if (!circle.isAlive()){
         this.deleteAtIndex(i);

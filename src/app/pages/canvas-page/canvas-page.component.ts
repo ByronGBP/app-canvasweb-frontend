@@ -19,28 +19,39 @@ export class CanvasPageComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
     onKeyUp(ev:KeyboardEvent) {
       ev.preventDefault();
-      //this.C.clearCanvas();
-      this.C.clearCanvasBg();
+      this.C.clearCanvasDrums();
   }
 
   @HostListener('document:keydown', ['$event'])
     onKeyDown(ev:KeyboardEvent) {
       ev.preventDefault();
       if (ev.key === 'q') {
-        this.C.demoBackground2();
+        this.C.demoDrums(1);
       }
+
+      if (ev.key == 'w') {
+        this.C.demoDrums(2);
+      }
+
       if (ev.key === ' ') {
         this.C.demoParticle();
       }
 
-      if (ev.key == 'w') {
-
-        this.C.demoBackground();
-      }
-
-      if (ev.key == 'd') {
+      if (ev.key == 'u') {
 
         this.C.demoCircle(1);
+      }
+      if (ev.key == 'i') {
+
+        this.C.demoCircle(2);
+      }
+      if (ev.key == 'o') {
+
+        this.C.demoCircle(3);
+      }
+      if (ev.key == 'p') {
+
+        this.C.demoCircle(4);
       }
   }
 

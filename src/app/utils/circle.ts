@@ -11,7 +11,7 @@ export class Circle {
 
   constructor(public ctx, public x, public y) {
     this.life = 0;
-    this.maxLife = 50;
+    this.maxLife = 60;
     this.setupDimensions();
 
   }
@@ -19,11 +19,10 @@ export class Circle {
   draw() {
     this.ctx.beginPath();
     this.ctx.fillStyle="#FFFFFF";
-
     this.ctx.arc(this.x, this.y, this.currentDimension.width / 20, 0, Math.PI*2, true);
+    this.ctx.stroke();
     this.ctx.closePath();
     this.ctx.fill();
-
   }
 
   update() {
@@ -45,8 +44,5 @@ export class Circle {
       halfWidth: window.innerWidth / 2,
       halfHeight: window.innerHeight / 2
     }
-
-    this.x = this.currentDimension.width/2;
-    this.y = this.currentDimension.height/2;
   }
 }

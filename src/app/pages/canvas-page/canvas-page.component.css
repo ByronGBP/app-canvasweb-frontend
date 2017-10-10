@@ -5,6 +5,20 @@
 
 #canvas {
   position: absolute;
+  z-index: 4;
+  width: 100vw;
+  height: 100vh;
+}
+
+#piano-canvas {
+  position: absolute;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+}
+
+#drums-canvas {
+  position:absolute;
   z-index: 2;
   width: 100vw;
   height: 100vh;
