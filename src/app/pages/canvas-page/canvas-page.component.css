@@ -6,12 +6,19 @@
 
 #canvas {
   position: absolute;
-  z-index: 4;
+  z-index: 5;
   width: 100vw;
   height: 100vh;
 }
 
 #piano-canvas {
+  position: absolute;
+  z-index: 4;
+  width: 100vw;
+  height: 100vh;
+}
+
+#guitar-canvas {
   position: absolute;
   z-index: 3;
   width: 100vw;

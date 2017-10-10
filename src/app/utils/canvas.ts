@@ -7,6 +7,8 @@ import { Particles } from './particles'
 import { Rectangle } from './rectangle'
 import { Rectangles } from './rectangles'
 import { Gradients } from './gradients'
+import { LineSinus } from './lineSinus'
+import { LineCosinus } from './lineCosinus'
 
 export class Canvas {
 
@@ -15,17 +17,19 @@ export class Canvas {
   particles:Particles
   rectangles:Rectangles;
   gradients:Gradients;
-
+  line:LineSinus;
 
   currentDimension;
 
   canvasCtx;
   canvasBgCtx;
   canvasDrumsCtx;
+  canvasGuitarCtx;
   canvasPianoCtx;
 
   private _intervalParticle;
   private _intervalPiano;
+  private _intervalGuitar;
 
   animations:any[] = [];
 
@@ -36,6 +40,32 @@ export class Canvas {
 
     this.rectangles = new Rectangles(this.canvasPianoCtx);
     this.gradients = new Gradients(this.canvasDrumsCtx);
+    this.line = new LineSinus(this.canvasGuitarCtx);
+  }
+
+  demoLineSinus() {
+
+    this.line = new LineSinus(this.canvasGuitarCtx);
+
+    this.canvasGuitarCtx.beginPath();
+
+    if (this._intervalGuitar) {
+      this.line.clearCanvas();
+      clearInterval(this._intervalGuitar);
+    }
+
+    this._intervalGuitar = setInterval(() => {
+      if(this.line.isAlive()) {
+        //cool effect
+        //this.line.clearCanvas();
+        this.line.update();
+        this.line.draw();
+      }else {
+        clearInterval(this._intervalGuitar);
+        this._intervalGuitar = null;
+        this.line.clearCanvas();
+      }
+    }, 5);
   }
 
   demoParticle() {
@@ -54,8 +84,6 @@ export class Canvas {
       }
     }, 10);
   }
-
-
 
   demoRectangle(x) {
     if (this._intervalPiano) {
@@ -104,6 +132,11 @@ export class Canvas {
     this.canvasDrumsCtx = canvasDrums.getContext('2d');
     this.canvasDrumsCtx.canvas.width  = this.currentDimension.width;
     this.canvasDrumsCtx.canvas.height = this.currentDimension.height;
+
+    let canvasGuitar:any = document.getElementById('guitar-canvas');
+    this.canvasGuitarCtx = canvasGuitar.getContext('2d');
+    this.canvasGuitarCtx.canvas.width  = this.currentDimension.width;
+    this.canvasGuitarCtx.canvas.height = this.currentDimension.height;
 
     let canvasBg:any = document.getElementById('bg-canvas');
     this.canvasBgCtx = canvasBg.getContext('2d');

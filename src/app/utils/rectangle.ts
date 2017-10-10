@@ -35,7 +35,9 @@ export class Rectangle {
   }
 
   private getCurrentHight() {
-    return this.y - this.finalPosition;
+    //Este crea un rectangulo hasta el final;
+    //return this.y - this.finalPosition;
+    return this.currentDimension.height - this.y;
   }
 
   private setupPositions() {

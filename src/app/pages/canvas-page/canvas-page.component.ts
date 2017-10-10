@@ -10,14 +10,17 @@ let KeyCode = {
   drums1: 'q',
   drums2: 'w',
   particles: ' ',
-  piano1: 'p',
-  piano2: 'o',
-  piano3: 'i',
-  piano4: 'u',
-  piano5: 'ñ',
-  piano6: 'l',
-  piano7: 'k',
-  piano8: 'j',
+  piano1: 'u',
+  piano2: 'i',
+  piano3: 'o',
+  piano4: 'p',
+  piano5: 'j',
+  piano6: 'k',
+  piano7: 'l',
+  piano8: 'ñ',
+  text: 'n',
+  guitar:'z'
+
 }
 
 @Component({
@@ -33,60 +36,71 @@ export class CanvasPageComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
     onKeyUp(ev:KeyboardEvent) {
       ev.preventDefault();
-      this.C.clearCanvasDrums();
+      const key = ev.key.toLowerCase()
+      if (key === KeyCode.drums1 || key == KeyCode.drums2) {
+        this.C.clearCanvasDrums();
+      }
+      if (key == KeyCode.text) {
+        document.getElementById('text').style.opacity = "0";
+      }
   }
 
   @HostListener('document:keydown', ['$event'])
     onKeyDown(ev:KeyboardEvent) {
       ev.preventDefault();
-      if (ev.key === KeyCode.drums1) {
+
+      const key = ev.key.toLowerCase()
+      if (key === KeyCode.drums1) {
         this.C.demoDrums(1);
       }
 
-      if (ev.key == KeyCode.drums2) {
+      if (key == KeyCode.drums2) {
         this.C.demoDrums(2);
       }
 
-      if (ev.key === KeyCode.particles) {
+      if (key === KeyCode.particles) {
         this.C.demoParticle();
       }
 
-      if (ev.key == KeyCode.piano1) {
+      if (key == KeyCode.piano1) {
         this.C.demoRectangle(1);
       }
 
-      if (ev.key == KeyCode.piano2) {
+      if (key == KeyCode.piano2) {
         this.C.demoRectangle(2);
       }
 
-      if (ev.key == KeyCode.piano3) {
+      if (key == KeyCode.piano3) {
         this.C.demoRectangle(3);
       }
 
-      if (ev.key == KeyCode.piano4) {
+      if (key == KeyCode.piano4) {
         this.C.demoRectangle(4);
       }
 
-      if (ev.key == KeyCode.piano5) {
+      if (key == KeyCode.piano5) {
         this.C.demoRectangle(5);
       }
 
-      if (ev.key == KeyCode.piano6) {
+      if (key == KeyCode.piano6) {
         this.C.demoRectangle(6);
       }
 
-      if (ev.key == KeyCode.piano7) {
+      if (key == KeyCode.piano7) {
         this.C.demoRectangle(7);
       }
 
-      if (ev.key == KeyCode.piano8) {
+      if (key == KeyCode.piano8) {
         this.C.demoRectangle(8);
       }
 
-      if (ev.key === 'n') {
+      if (key === KeyCode.text) {
         document.getElementById('text').style.opacity = "1";
       }
 
+      if (key === KeyCode.guitar) {
+        this.C.demoLineSinus();
+      }
   }
 
   constructor(private paintingService: PaintingService) { }
