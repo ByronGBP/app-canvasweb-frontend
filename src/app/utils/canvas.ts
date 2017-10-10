@@ -5,7 +5,7 @@ import { Painting } from '../models/painting.model'
 import { Particle } from './particle'
 import { Particles } from './particles'
 import { Rectangle } from './rectangle'
-import { Circles } from './circles'
+import { Rectangles } from './rectangles'
 import { Gradients } from './gradients'
 
 export class Canvas {
@@ -13,7 +13,7 @@ export class Canvas {
   allTheCodes: Function[] = [];
 
   particles:Particles
-  circles:Circles;
+  rectangles:Rectangles;
   gradients:Gradients;
 
 
@@ -31,10 +31,10 @@ export class Canvas {
 
   constructor(private paintings: string[]) {
     this.setupDimensions();
-    this.setupTheCodes();
+    //this.setupTheCodes();
     this.setupCanvas();
 
-    this.circles = new Circles(this.canvasPianoCtx);
+    this.rectangles = new Rectangles(this.canvasPianoCtx);
     this.gradients = new Gradients(this.canvasDrumsCtx);
   }
 
@@ -56,23 +56,20 @@ export class Canvas {
   }
 
 
-  newRectangle;
+
   demoRectangle(x) {
     if (this._intervalPiano) {
       clearInterval(this._intervalPiano);
     }
 
-    this.newRectangle = new Rectangle(this.canvasPianoCtx, x);
-
+    let newRectangle = new Rectangle(this.canvasPianoCtx, x);
+    this.rectangles.push(newRectangle, x);
     this._intervalPiano = setInterval(() => {
 
-      if(this.newRectangle.isAlive()) {
-        this.newRectangle.clearCanvas();
-        this.newRectangle.update();
-        this.newRectangle.draw();
+      if(!this.rectangles.ended()) {
+        this.rectangles.render();
       }else {
         clearInterval(this._intervalPiano);
-        this.newRectangle.clearCanvas();
         this._intervalPiano = null;
       }
     }, 10);

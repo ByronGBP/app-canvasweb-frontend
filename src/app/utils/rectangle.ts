@@ -10,22 +10,18 @@ export class Rectangle {
 
   currentDimension;
 
-  constructor(public ctx, position) {
+  constructor(public ctx, public position) {
     this.setupDimensions();
-    this.setupPositions(position);
+    this.setupPositions();
   }
 
   draw() {
     this.ctx.beginPath();
     this.ctx.fillStyle="#FFFFFF";
-    this.ctx.rect(this.x, this.y, this.currentDimension.sixthhWidth, this.getCurrentHight());
+    this.ctx.rect(this.x, this.y, this.currentDimension.ninethhWidth, this.getCurrentHight());
     this.ctx.stroke();
     this.ctx.closePath();
     this.ctx.fill();
-  }
-
-  clearCanvas() {
-    this.ctx.clearRect(0,0,this.currentDimension.width, this.currentDimension.height);
   }
 
   update() {
@@ -42,11 +38,11 @@ export class Rectangle {
     return this.y - this.finalPosition;
   }
 
-  private setupPositions(pos) {
-    this.x = this.currentDimension.sixthhWidth * pos;
+  private setupPositions() {
+    this.x = this.currentDimension.ninethhWidth * this.position;
     this.y = this.currentDimension.height;
 
-    this.finalPosition = this.currentDimension.sixthHeight * pos;
+    this.finalPosition = this.currentDimension.ninethHeight * this.position;
   }
 
   private setupDimensions() {
@@ -55,8 +51,8 @@ export class Rectangle {
       height: window.innerHeight,
       halfWidth: window.innerWidth / 2,
       halfHeight: window.innerHeight / 2,
-      sixthHeight: window.innerHeight / 6,
-      sixthhWidth: window.innerWidth / 6,
+      ninethHeight: window.innerHeight / 10,
+      ninethhWidth: window.innerWidth / 10,
     }
   }
 }

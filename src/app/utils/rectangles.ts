@@ -1,9 +1,9 @@
 
 
-export class Circles {
+export class Rectangles {
 
 
-  circles:any[] = [,,,];
+  rectangles:any[] = [,,,,,,,];
 
   currentDimension;
 
@@ -20,7 +20,7 @@ export class Circles {
 
   ended() {
     var ended = true;
-    this.circles.forEach((elem) => {
+    this.rectangles.forEach((elem) => {
       if (elem) {
         ended = false;
       }
@@ -29,9 +29,8 @@ export class Circles {
   }
 
   push(circle, x) {
-    console.log(x);
-    this.circles[x] = null;
-    this.circles[x] = circle;
+    this.rectangles[x] = null;
+    this.rectangles[x] = circle;
   }
 
   clearCanvas() {
@@ -39,27 +38,31 @@ export class Circles {
   }
 
   private updateCircles() {
-    this.circles.map((circle) => {
-      circle.update();
+    this.rectangles.map((rectangle) => {
+      if(rectangle) {
+        rectangle.update();
+      }
     })
   }
 
   private drawCircles() {
-    this.circles.forEach((circle) => {
-      circle.draw(this.ctx);
+    this.rectangles.forEach((rectangle) => {
+      if (rectangle) {
+        rectangle.draw(this.ctx);
+      }
     })
   }
 
   private checkCircles() {
-    return  this.circles.map((circle, i) => {
-      if (!circle.isAlive()){
+    return  this.rectangles.map((rectangle, i) => {
+      if (rectangle && !rectangle.isAlive()){
         this.deleteAtIndex(i);
       }
     })
   }
 
   private deleteAtIndex(i) {
-    this.circles.splice(i,1);
+    this.rectangles[i] = null;
   }
 
   private setupDimensions() {
@@ -67,7 +70,9 @@ export class Circles {
       width: window.innerWidth,
       height: window.innerHeight,
       halfWidth: window.innerWidth / 2,
-      halfHeight: window.innerHeight / 2
+      halfHeight: window.innerHeight / 2,
+      sixthHeight: window.innerHeight / 6,
+      sixthhWidth: window.innerWidth / 6,
     }
   }
 }
