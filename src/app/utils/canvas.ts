@@ -4,7 +4,7 @@ import { Painting } from '../models/painting.model'
 
 import { Particle } from './particle'
 import { Particles } from './particles'
-import { Circle } from './circle'
+import { Rectangle } from './rectangle'
 import { Circles } from './circles'
 import { Gradients } from './gradients'
 
@@ -55,21 +55,24 @@ export class Canvas {
     }, 10);
   }
 
-  demoCircle(x) {
+
+  newRectangle;
+  demoRectangle(x) {
     if (this._intervalPiano) {
       clearInterval(this._intervalPiano);
     }
 
-    var posX = this.currentDimension.width / 5 * x;
-
-    var newCircle = new Circle(this.canvasPianoCtx, posX, this.currentDimension.height / 4 * 3);
-    this.circles.push(newCircle, x - 1);
+    this.newRectangle = new Rectangle(this.canvasPianoCtx, x);
 
     this._intervalPiano = setInterval(() => {
-      if(!this.circles.ended()) {
-        this.circles.render();
+
+      if(this.newRectangle.isAlive()) {
+        this.newRectangle.clearCanvas();
+        this.newRectangle.update();
+        this.newRectangle.draw();
       }else {
         clearInterval(this._intervalPiano);
+        this.newRectangle.clearCanvas();
         this._intervalPiano = null;
       }
     }, 10);

@@ -39,19 +39,19 @@ export class CanvasPageComponent implements OnInit {
 
       if (ev.key == 'u') {
 
-        this.C.demoCircle(1);
+        this.C.demoRectangle(1);
       }
       if (ev.key == 'i') {
 
-        this.C.demoCircle(2);
+        this.C.demoRectangle(2);
       }
       if (ev.key == 'o') {
 
-        this.C.demoCircle(3);
+        this.C.demoRectangle(3);
       }
       if (ev.key == 'p') {
 
-        this.C.demoCircle(4);
+        this.C.demoRectangle(4);
       }
   }
 
