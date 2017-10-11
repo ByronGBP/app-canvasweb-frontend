@@ -33,6 +33,11 @@ export class Spiral {
   spiral() {
     this.clearCanvas();
 
+    let r = 77;
+    let g = 166;
+    let b = 255;
+    let now = false;
+
     for(var i = 0; i < this.n * this.m; i++) {
       this.beta = i * 2 * PI/(this.n * this.m);
       this.x0 = 0;
@@ -43,7 +48,13 @@ export class Spiral {
       this.ctx.translate(this.currentDimension.halfWidth, this.currentDimension.halfHeight);
       this.ctx.rotate(this.t/3);
       /* only need to set the fillstyle once up here now */
-      this.ctx.fillStyle = 'hsl(' + this.hue + ', 100%, 65%)';
+
+
+      if (g < 64){
+        r = 77;
+        g = 166;
+      }
+      this.ctx.fillStyle = this.getColor(r,g,b);
 
       for(var j = 0; j < this.p; j++) {
         this.gamma = j*2*PI/this.p;
@@ -60,13 +71,22 @@ export class Spiral {
         /* (remove this for a cool effect) */
         this.ctx.moveTo(this.x1,this.y1);
         /* setup the arc path here */
+
         this.ctx.arc(this.x1, this.y1, this.r, 0, 2*PI);
+
       }
+
+      this.ctx.fill();
+        r -= 18;
+        g -= 9;
+
+      if (r < 0) {r = 0;}
+
 
       /* close the 1 path that now is a combination of all the arcs */
       this.ctx.closePath();
       /* fill the whole path only once now */
-      this.ctx.fill();
+
       /*
        * reason for moving the fill out of the inner loop:
        * see https://twitter.com/loktar00/status/420369245378076672
@@ -83,13 +103,6 @@ export class Spiral {
 
 
   private getColor(r,g,b) {
-    if (r < 51){
-      r = 255;
-    }
-
-    if (g < 153){
-      g = 255;
-    }
 
     return "rgb("+r+","+g+","+b+")";
   }
