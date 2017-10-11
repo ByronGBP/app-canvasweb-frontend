@@ -15,8 +15,8 @@ export class Gradients {
                                                        this.currentDimension.halfWidth,
                                                        this.currentDimension.halfHeight,
                                                        0,);
-      gradient.addColorStop(0,"black");
-      gradient.addColorStop(1,"white");
+      gradient.addColorStop(0,"rgba(77, 148, 255, 0.5)");
+      gradient.addColorStop(1,"rgba(255, 255, 255, 1)");
       this.ctx.fillStyle = gradient;
       this.ctx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
   }
@@ -27,9 +27,9 @@ export class Gradients {
                                                        this.currentDimension.halfWidth,
                                                        this.currentDimension.halfWidth,
                                                        this.currentDimension.halfHeight,
-                                                       this.currentDimension.halfWidth / 2,);
-      gradient.addColorStop(0,"#505050");
-      gradient.addColorStop(1,"black");
+                                                       this.currentDimension.halfHeight / 4,);
+       gradient.addColorStop(0,"rgba(0, 0, 0, 0.5)");
+       gradient.addColorStop(1,"rgba(77, 148, 255, 0.9)");
       this.ctx.fillStyle = gradient;
       this.ctx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
   }

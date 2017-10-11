@@ -14,7 +14,7 @@ import { Spiral } from './spiral'
 import { Circle } from './Circle'
 import { Circles } from './Circles'
 
-
+declare var Fireworks:any;
 
 export class Canvas {
 
@@ -26,6 +26,8 @@ export class Canvas {
   lines:Lines;
   spiral:Spiral;
   circles:Circles;
+
+  fireworks;
 
   currentDimension;
 
@@ -53,6 +55,7 @@ export class Canvas {
     this.gradients = new Gradients(this.canvasDrumsCtx);
     this.lines = new Lines(this.canvasGuitarCtx);
     this.circles = new Circles(this.canvasPianoCtx);
+    this.fireworks = new Fireworks();
   }
 
   demoBg() {

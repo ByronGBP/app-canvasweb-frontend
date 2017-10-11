@@ -4,6 +4,13 @@
   font-family: Futura, sans-serif;
 }
 
+#fire-canvas {
+  position: absolute;
+  z-index: 11;
+  width: 100vw;
+  height: 100vh;
+}
+
 #canvas {
   position: absolute;
   z-index: 5;
