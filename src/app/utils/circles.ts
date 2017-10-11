@@ -1,9 +1,9 @@
 
 
-export class Rectangles {
+export class Circles {
 
 
-  rectangles:any[] = [,,,,,,,];
+  circles:any[] = [,,,,,,,];
 
   currentDimension;
 
@@ -20,7 +20,7 @@ export class Rectangles {
 
   ended() {
     var ended = true;
-    this.rectangles.forEach((elem) => {
+    this.circles.forEach((elem) => {
       if (elem) {
         ended = false;
       }
@@ -29,8 +29,8 @@ export class Rectangles {
   }
 
   push(circle, x) {
-    this.rectangles[x] = null;
-    this.rectangles[x] = circle;
+    this.circles[x] = null;
+    this.circles[x] = circle;
   }
 
   clearCanvas() {
@@ -38,31 +38,31 @@ export class Rectangles {
   }
 
   private updateCircles() {
-    this.rectangles.map((rectangle) => {
-      if(rectangle) {
-        rectangle.update();
+    this.circles.map((circle) => {
+      if(circle) {
+        circle.update();
       }
     })
   }
 
-  private drawCircles() {
-    this.rectangles.forEach((rectangle) => {
-      if (rectangle) {
-        rectangle.draw();
+   drawCircles() {
+    this.circles.forEach((circle) => {
+      if (circle) {
+        circle.draw();
       }
     })
   }
 
   private checkCircles() {
-    return  this.rectangles.map((rectangle, i) => {
-      if (rectangle && !rectangle.isAlive()){
+    return  this.circles.map((circle, i) => {
+      if (circle && !circle.isAlive()){
         this.deleteAtIndex(i);
       }
     })
   }
 
   private deleteAtIndex(i) {
-    this.rectangles[i] = null;
+    this.circles[i] = null;
   }
 
   private setupDimensions() {

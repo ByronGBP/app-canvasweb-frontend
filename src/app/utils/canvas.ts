@@ -11,6 +11,8 @@ import { LineSinus } from './lineSinus'
 import { LineCosinus } from './lineCosinus'
 import { Lines } from './lines'
 import { Spiral } from './spiral'
+import { Circle } from './Circle'
+import { Circles } from './Circles'
 
 
 
@@ -23,6 +25,7 @@ export class Canvas {
   gradients:Gradients;
   lines:Lines;
   spiral:Spiral;
+  circles:Circles;
 
   currentDimension;
 
@@ -49,6 +52,7 @@ export class Canvas {
     this.rectangles = new Rectangles(this.canvasPianoCtx);
     this.gradients = new Gradients(this.canvasDrumsCtx);
     this.lines = new Lines(this.canvasGuitarCtx);
+    this.circles = new Circles(this.canvasPianoCtx);
   }
 
   demoBg() {
@@ -61,7 +65,44 @@ export class Canvas {
       this.spiral.spiral();
     }, 50);
 
-    //this.spiral.spiral();
+    this.spiral.spiral();
+  }
+
+  demoCircle(x) {
+
+    let rParent = 2.5 * this.currentDimension.halfHeight / 4;
+
+    if (this._intervalPiano) {
+      clearInterval(this._intervalPiano);
+    }
+
+    let newCircle = new Circle(this.canvasPianoCtx, x, rParent);
+    this.circles.push(newCircle, x);
+    this._intervalPiano = setInterval(() => {
+      if(!this.circles.ended()) {
+        this.circles.render();
+      }else {
+        clearInterval(this._intervalPiano);
+        this._intervalPiano = null;
+      }
+    }, 10);
+  }
+
+  demoRectangle(x) {
+    if (this._intervalPiano) {
+      clearInterval(this._intervalPiano);
+    }
+
+    let newRectangle = new Rectangle(this.canvasPianoCtx, x);
+    this.rectangles.push(newRectangle, x);
+    this._intervalPiano = setInterval(() => {
+      if(!this.rectangles.ended()) {
+        this.rectangles.render();
+      }else {
+        clearInterval(this._intervalPiano);
+        this._intervalPiano = null;
+      }
+    }, 10);
   }
 
   demoLines() {
@@ -99,24 +140,6 @@ export class Canvas {
       }else {
         clearInterval(this._intervalParticle);
         this._intervalParticle = null;
-      }
-    }, 10);
-  }
-
-  demoRectangle(x) {
-    if (this._intervalPiano) {
-      clearInterval(this._intervalPiano);
-    }
-
-    let newRectangle = new Rectangle(this.canvasPianoCtx, x);
-    this.rectangles.push(newRectangle, x);
-    this._intervalPiano = setInterval(() => {
-
-      if(!this.rectangles.ended()) {
-        this.rectangles.render();
-      }else {
-        clearInterval(this._intervalPiano);
-        this._intervalPiano = null;
       }
     }, 10);
   }

@@ -64,35 +64,50 @@ export class CanvasPageComponent implements OnInit {
       }
 
       if (key == KeyCode.piano1) {
-        this.C.demoRectangle(1);
+        //this.C.demoRectangle(1);
+        this.C.demoCircle(1);
       }
 
       if (key == KeyCode.piano2) {
-        this.C.demoRectangle(2);
+        //this.C.demoRectangle(2);
+        this.C.demoCircle(2);
+
       }
 
       if (key == KeyCode.piano3) {
-        this.C.demoRectangle(3);
+        //this.C.demoRectangle(3);
+        this.C.demoCircle(3);
+
       }
 
       if (key == KeyCode.piano4) {
-        this.C.demoRectangle(4);
+        //this.C.demoRectangle(4);
+        this.C.demoCircle(4);
+
       }
 
       if (key == KeyCode.piano5) {
-        this.C.demoRectangle(5);
+        //this.C.demoRectangle(5);
+        this.C.demoCircle(5);
+
       }
 
       if (key == KeyCode.piano6) {
-        this.C.demoRectangle(6);
+        //this.C.demoRectangle(6);
+        this.C.demoCircle(6);
+
       }
 
       if (key == KeyCode.piano7) {
-        this.C.demoRectangle(7);
+        //this.C.demoRectangle(7);
+        this.C.demoCircle(7);
+
       }
 
       if (key == KeyCode.piano8) {
-        this.C.demoRectangle(8);
+        //this.C.demoRectangle(8);
+        this.C.demoCircle(8);
+
       }
 
       if (key === KeyCode.text) {
@@ -106,6 +121,7 @@ export class CanvasPageComponent implements OnInit {
       if (key === KeyCode.bg){
         this.C.demoBg();
       }
+
   }
 
   constructor(private paintingService: PaintingService) {
