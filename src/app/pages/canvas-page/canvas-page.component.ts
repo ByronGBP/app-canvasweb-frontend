@@ -7,8 +7,8 @@ import { Painting } from '../../models/painting.model'
 import { Canvas } from '../../utils/canvas'
 
 let KeyCode = {
-  drums1: 'q',
-  drums2: 'w',
+  drums1: 'w',
+  drums2: 'q',
   particles: ' ',
   piano1: 'u',
   piano2: 'i',
@@ -21,7 +21,7 @@ let KeyCode = {
   text: 'n',
   guitar:'z',
   guitar2:'x',
-
+  bg: 'b',
 }
 
 @Component({
@@ -103,7 +103,7 @@ export class CanvasPageComponent implements OnInit {
         this.C.demoLines();
       }
 
-      if (key === 'b'){
+      if (key === KeyCode.bg){
         this.C.demoBg();
       }
   }

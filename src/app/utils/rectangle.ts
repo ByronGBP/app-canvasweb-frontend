@@ -1,3 +1,14 @@
+const positionInvert = {
+  1: 8,
+  2: 7,
+  3: 6,
+  4: 5,
+  5: 4,
+  6: 3,
+  7: 2,
+  8: 1,
+}
+
 
 export class Rectangle {
   gravity = 0.05;
@@ -9,6 +20,7 @@ export class Rectangle {
   finalPosition;
 
   currentDimension;
+  inversPosition;
 
   constructor(public ctx, public position) {
     this.setupDimensions();
@@ -16,12 +28,28 @@ export class Rectangle {
   }
 
   draw() {
+    this.drawRectange();
+    this.drawEffect();
+  }
+
+  private drawEffect() {
+
     this.ctx.beginPath();
-    this.ctx.fillStyle="#FFFFFF";
-    this.ctx.rect(this.x, this.y, this.currentDimension.ninethhWidth, this.getCurrentHight());
+    this.ctx.rect(this.x, this.y, this.currentDimension.ninethhWidth, this.getHightForEffect());
+    this.ctx.strokeStyle = "rgba(77,166,255,0.5)";
+    this.ctx.stroke();
+    this.ctx.fillStyle = "rgba(0,64,255,0.5)";
+    this.ctx.fill();
+    this.ctx.closePath();
+
+  }
+
+  private drawRectange() {
+    this.ctx.beginPath();
+    this.ctx.rect(this.x, this.finalPosition, this.currentDimension.ninethhWidth, this.getHightForRectangle());
+    this.ctx.strokeStyle = "white";
     this.ctx.stroke();
     this.ctx.closePath();
-    this.ctx.fill();
   }
 
   update() {
@@ -30,18 +58,25 @@ export class Rectangle {
     this.vy -= this.gravity;
   }
 
+
+
   isAlive() {
     return this.y > this.finalPosition;
   }
 
-  private getCurrentHight() {
-    //Este crea un rectangulo hasta el final;
-    //return this.y - this.finalPosition;
+  private getHightForRectangle() {
     return this.currentDimension.height - this.y;
   }
 
+  private getHightForEffect() {
+    //Este crea un rectangulo hasta el final;
+    return this.y - this.finalPosition;
+  }
+
   private setupPositions() {
-    this.x = this.currentDimension.ninethhWidth * this.position;
+    this.inversPosition = positionInvert[this.position];
+
+    this.x = this.currentDimension.ninethhWidth * this.inversPosition;
     this.y = this.currentDimension.height;
 
     this.finalPosition = this.currentDimension.ninethHeight * this.position;
