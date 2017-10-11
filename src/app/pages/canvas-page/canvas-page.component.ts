@@ -102,6 +102,10 @@ export class CanvasPageComponent implements OnInit {
       if (key === KeyCode.guitar) {
         this.C.demoLines();
       }
+
+      if (key === 'b'){
+        this.C.demoBg();
+      }
   }
 
   constructor(private paintingService: PaintingService) { }

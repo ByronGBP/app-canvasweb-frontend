@@ -10,6 +10,9 @@ import { Gradients } from './gradients'
 import { LineSinus } from './lineSinus'
 import { LineCosinus } from './lineCosinus'
 import { Lines } from './lines'
+import { Spiral } from './spiral'
+
+
 
 export class Canvas {
 
@@ -19,6 +22,7 @@ export class Canvas {
   rectangles:Rectangles;
   gradients:Gradients;
   lines:Lines;
+  spiral:Spiral;
 
   currentDimension;
 
@@ -31,6 +35,7 @@ export class Canvas {
   private _intervalParticle;
   private _intervalPiano;
   private _intervalGuitar;
+  private _intervalBg;
 
   animations:any[] = [];
 
@@ -39,9 +44,24 @@ export class Canvas {
     //this.setupTheCodes();
     this.setupCanvas();
 
+    this.spiral = new Spiral(this.canvasBgCtx);
+
     this.rectangles = new Rectangles(this.canvasPianoCtx);
     this.gradients = new Gradients(this.canvasDrumsCtx);
     this.lines = new Lines(this.canvasGuitarCtx);
+  }
+
+  demoBg() {
+    if (this._intervalBg) {
+      this.lines.clearCanvas();
+      clearInterval(this._intervalBg);
+    }
+
+    this._intervalBg = setInterval(() => {
+      this.spiral.spiral();
+    }, 50);
+
+    //this.spiral.spiral();
   }
 
   demoLines() {
@@ -56,7 +76,7 @@ export class Canvas {
     this._intervalGuitar = setInterval(() => {
       if(!this.lines.ended()) {
         //cool effect
-        //this.lines.clearCanvas();
+        this.lines.clearCanvas();
         this.lines.render();
       }else {
         clearInterval(this._intervalGuitar);
@@ -140,8 +160,6 @@ export class Canvas {
     this.canvasBgCtx = canvasBg.getContext('2d');
     this.canvasBgCtx.canvas.width  = this.currentDimension.width;
     this.canvasBgCtx.canvas.height = this.currentDimension.height;
-    this.canvasBgCtx.fillStyle = '#000000';
-    this.canvasBgCtx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
   }
 
   private setupDimensions() {
