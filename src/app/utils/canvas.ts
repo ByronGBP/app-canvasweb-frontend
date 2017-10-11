@@ -176,5 +176,4 @@ export class Canvas {
       this.allTheCodes.push(new Function('ctx', painting))
     });
   }
-
 }

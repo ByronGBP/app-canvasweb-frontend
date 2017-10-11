@@ -10,14 +10,14 @@ let KeyCode = {
   drums1: 'w',
   drums2: 'q',
   particles: ' ',
-  piano1: 'u',
-  piano2: 'i',
-  piano3: 'o',
-  piano4: 'p',
-  piano5: 'j',
-  piano6: 'k',
-  piano7: 'l',
-  piano8: 'ñ',
+  piano1: 'p',
+  piano2: 'o',
+  piano3: 'i',
+  piano4: 'u',
+  piano5: 'ñ',
+  piano6: 'l',
+  piano7: 'k',
+  piano8: 'j',
   text: 'n',
   guitar:'z',
   guitar2:'x',
@@ -108,17 +108,20 @@ export class CanvasPageComponent implements OnInit {
       }
   }
 
-  constructor(private paintingService: PaintingService) { }
+  constructor(private paintingService: PaintingService) {
+
+  }
 
   ngOnInit() {
-    this.paintingService.getPaintings()
-      .subscribe(
-        (paintings) => {
-          this.paintings=[];
-          paintings.forEach((painting) => this.paintings.push(painting.code));
-          this.C = new Canvas(this.paintings);
-
-        }
-    );
+    this.C = new Canvas([]);
+  //   this.paintingService.getPaintings()
+  //     .subscribe(
+  //       (paintings) => {
+  //         this.paintings=[];
+  //         paintings.forEach((painting) => this.paintings.push(painting.code));
+  //         this.C = new Canvas(this.paintings);
+  //
+  //       }
+  //   );
   }
 }

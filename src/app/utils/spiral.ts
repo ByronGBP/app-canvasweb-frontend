@@ -99,11 +99,7 @@ export class Spiral {
     this.t += this.t_step;
   }
 
-
-
-
   private getColor(r,g,b) {
-
     return "rgb("+r+","+g+","+b+")";
   }
   private setupDimensions() {
