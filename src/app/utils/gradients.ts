@@ -34,6 +34,14 @@ export class Gradients {
       this.ctx.fillRect(0, 0, this.currentDimension.width, this.currentDimension.height);
   }
 
+  gradientTenue() {
+    var my_gradient = this.ctx.createLinearGradient(0, 3*this.currentDimension.height / 4, 0, this.currentDimension.height);
+    my_gradient.addColorStop(0, "rgba(0,0,0,0.0)");
+    my_gradient.addColorStop(1, "rgba(128, 179, 255,0.9)");
+    this.ctx.fillStyle = my_gradient;
+    this.ctx.fillRect(0, this.currentDimension.halfHeight, this.currentDimension.width, this.currentDimension.height);
+  }
+
   clearCanvas() {
     this.ctx.clearRect(0,0, this.currentDimension.width, this.currentDimension.height);
   }

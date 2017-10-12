@@ -11,8 +11,9 @@ import { LineSinus } from './lineSinus'
 import { LineCosinus } from './lineCosinus'
 import { Lines } from './lines'
 import { Spiral } from './spiral'
-import { Circle } from './Circle'
-import { Circles } from './Circles'
+import { Circle } from './circle'
+import { Circles } from './circles'
+import { RecursiveFace } from './recursiveDraw'
 
 declare var Fireworks:any;
 
@@ -26,6 +27,7 @@ export class Canvas {
   lines:Lines;
   spiral:Spiral;
   circles:Circles;
+  recursiveFace:RecursiveFace;
 
   fireworks;
 
@@ -36,6 +38,7 @@ export class Canvas {
   canvasDrumsCtx;
   canvasGuitarCtx;
   canvasPianoCtx;
+  canvasRecursiveCtx;
 
   private _intervalParticle;
   private _intervalPiano;
@@ -50,12 +53,21 @@ export class Canvas {
     this.setupCanvas();
 
     this.spiral = new Spiral(this.canvasBgCtx);
-
     this.rectangles = new Rectangles(this.canvasPianoCtx);
     this.gradients = new Gradients(this.canvasDrumsCtx);
     this.lines = new Lines(this.canvasGuitarCtx);
     this.circles = new Circles(this.canvasPianoCtx);
     this.fireworks = new Fireworks();
+    this.recursiveFace = new RecursiveFace(this.canvasRecursiveCtx,
+                                          this.currentDimension.width/2,
+                                          this.currentDimension.height/2,
+                                          this.currentDimension.height / 2);
+  }
+
+  demoRecursive() {
+
+    this.recursiveFace.drawRecursive();
+
   }
 
   demoBg() {
@@ -66,7 +78,7 @@ export class Canvas {
 
     this._intervalBg = setInterval(() => {
       this.spiral.spiral();
-    }, 50);
+    }, 1000);
 
     this.spiral.spiral();
   }
@@ -89,6 +101,7 @@ export class Canvas {
         this._intervalPiano = null;
       }
     }, 10);
+
   }
 
   demoRectangle(x) {
@@ -154,11 +167,20 @@ export class Canvas {
         break;
       case 2:
         this.gradients.gradientWhiteBlack();
+        break;
+      case 3:
+        this.gradients.gradientTenue();
+        break;
     }
   }
 
   clearCanvasDrums() {
     this.gradients.clearCanvas();
+  }
+
+  clearCanvasFace() {
+    console.log('clear!');
+    this.recursiveFace.clearCanvas();
   }
 
   private setupCanvas() {
@@ -186,6 +208,11 @@ export class Canvas {
     this.canvasBgCtx = canvasBg.getContext('2d');
     this.canvasBgCtx.canvas.width  = this.currentDimension.width;
     this.canvasBgCtx.canvas.height = this.currentDimension.height;
+
+    let canvasRecursive:any = document.getElementById('bg-canvas');
+    this.canvasRecursiveCtx = canvasRecursive.getContext('2d');
+    this.canvasRecursiveCtx.canvas.width  = this.currentDimension.width;
+    this.canvasRecursiveCtx.canvas.height = this.currentDimension.height;
   }
 
   private setupDimensions() {

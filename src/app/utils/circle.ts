@@ -13,10 +13,10 @@ const positionAngle = {
 
 export class Circle {
   gravity = 0.05;
-  vy = 1;
-  vx = 1;
+  vy = 1.5;
+  vx = 1.5;
 
-  offset = 30;
+  offset = 80;
 
   x;
   y;

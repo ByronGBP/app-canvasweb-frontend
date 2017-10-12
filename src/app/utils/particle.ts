@@ -5,7 +5,7 @@ export class Particle {
   y;
   gravity = 0.65;
   vx = Math.random() * 20 - 10;
-  vy = Math.random() * -30;
+  vy = Math.random() * -25;
 
   life;
   maxLife;
@@ -23,7 +23,7 @@ export class Particle {
     ctx.beginPath();
     ctx.fillStyle="#FFFFFF";
 
-    ctx.arc(this.x, this.y, 10, 0, Math.PI*2, true);
+    ctx.arc(this.x, this.y, 5, 0, Math.PI*2, true);
     ctx.closePath();
     ctx.fill();
 

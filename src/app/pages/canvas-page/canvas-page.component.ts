@@ -9,6 +9,7 @@ import { Canvas } from '../../utils/canvas'
 let KeyCode = {
   drums1: 'w',
   drums2: 'q',
+  drums3: 'e',
   particles: ' ',
   piano1: 'p',
   piano2: 'o',
@@ -21,7 +22,8 @@ let KeyCode = {
   text: 'n',
   guitar:'z',
   guitar2:'x',
-  bg: 'b',
+  bg:'b',
+  recursive:'r',
 }
 
 @Component({
@@ -38,11 +40,17 @@ export class CanvasPageComponent implements OnInit {
     onKeyUp(ev:KeyboardEvent) {
       ev.preventDefault();
       const key = ev.key.toLowerCase()
-      if (key === KeyCode.drums1 || key == KeyCode.drums2) {
+
+      if (key === KeyCode.drums1 || key == KeyCode.drums2 || key == KeyCode.drums3) {
         this.C.clearCanvasDrums();
       }
+
       if (key == KeyCode.text) {
         document.getElementById('text').style.opacity = "0";
+      }
+
+      if (key == KeyCode.recursive) {
+        this.C.clearCanvasFace();
       }
   }
 
@@ -59,54 +67,58 @@ export class CanvasPageComponent implements OnInit {
         this.C.demoDrums(2);
       }
 
+      if (key == KeyCode.drums3) {
+        this.C.demoDrums(3);
+      }
+
       if (key === KeyCode.particles) {
         this.C.demoParticle();
       }
 
       if (key == KeyCode.piano1) {
-        //this.C.demoRectangle(1);
-        this.C.demoCircle(1);
+        this.C.demoRectangle(1);
+        //this.C.demoCircle(1);
       }
 
       if (key == KeyCode.piano2) {
-        //this.C.demoRectangle(2);
-        this.C.demoCircle(2);
+        this.C.demoRectangle(2);
+        //this.C.demoCircle(2);
 
       }
 
       if (key == KeyCode.piano3) {
-        //this.C.demoRectangle(3);
-        this.C.demoCircle(3);
+        this.C.demoRectangle(3);
+        //this.C.demoCircle(3);
 
       }
 
       if (key == KeyCode.piano4) {
-        //this.C.demoRectangle(4);
-        this.C.demoCircle(4);
+        this.C.demoRectangle(4);
+        //this.C.demoCircle(4);
 
       }
 
       if (key == KeyCode.piano5) {
-        //this.C.demoRectangle(5);
-        this.C.demoCircle(5);
+        this.C.demoRectangle(5);
+        //this.C.demoCircle(5);
 
       }
 
       if (key == KeyCode.piano6) {
-        //this.C.demoRectangle(6);
-        this.C.demoCircle(6);
+        this.C.demoRectangle(6);
+        //this.C.demoCircle(6);
 
       }
 
       if (key == KeyCode.piano7) {
-        //this.C.demoRectangle(7);
-        this.C.demoCircle(7);
+        this.C.demoRectangle(7);
+        //this.C.demoCircle(7);
 
       }
 
       if (key == KeyCode.piano8) {
-        //this.C.demoRectangle(8);
-        this.C.demoCircle(8);
+        this.C.demoRectangle(8);
+        //this.C.demoCircle(8);
 
       }
 
@@ -120,6 +132,10 @@ export class CanvasPageComponent implements OnInit {
 
       if (key === KeyCode.bg){
         this.C.demoBg();
+      }
+
+      if (key === KeyCode.recursive){
+        this.C.demoRecursive();
       }
 
   }

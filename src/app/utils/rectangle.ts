@@ -28,7 +28,7 @@ export class Rectangle {
   }
 
   draw() {
-    this.drawRectange();
+    //this.drawRectange();
     this.drawEffect();
   }
 
@@ -38,7 +38,19 @@ export class Rectangle {
     this.ctx.rect(this.x, this.y, this.currentDimension.ninethhWidth, this.getHightForEffect());
     this.ctx.strokeStyle = "rgba(77,166,255,0.5)";
     this.ctx.stroke();
-    this.ctx.fillStyle = "rgba(0,64,255,0.5)";
+    // this.ctx.shadowBlur=10;
+    // this.ctx.shadowColor="rgba(77,166,255,0.5)";
+    // //this.ctx.fillStyle = "rgba(0, 71, 179,0.5)";
+    // this.ctx.fillStyle = "rgba(0,64,255,0.5)";
+    var gradient = this.ctx.createRadialGradient(this.currentDimension.halfWidth,
+                                                           3 * this.currentDimension.height / 4,
+                                                           this.currentDimension.halfWidth,
+                                                           3 * this.currentDimension.height / 4,
+                                                           this.currentDimension.halfHeight,
+                                                           0,);
+          gradient.addColorStop(0,"rgba(0,64,255,0.5");
+          gradient.addColorStop(1,"rgba(77,166,255,0.5)");
+          this.ctx.fillStyle = gradient;
     this.ctx.fill();
     this.ctx.closePath();
 

@@ -94,8 +94,8 @@ var Fireworks = function() {
 		);
 		this.friction = 1 - self.partFriction / 100;
 		this.gravity = self.partGravity / 2;
-		this.hue = rand(hue - self.hueVariance, hue + self.hueVariance);
-		this.brightness = rand(50, 80);
+		this.hue = 239;
+		this.brightness = rand(30, 80);
 		this.alpha = rand(40, 100) / 100;
 		this.decay = rand(10, 50) / 1000;
 		this.wind = (rand(0, self.partWind) - self.partWind / 2) / 25;
@@ -237,8 +237,8 @@ var Fireworks = function() {
 		this.shockwaveAngle =
 			Math.atan2(targetY - startY, targetX - startX) + 90 * (Math.PI / 180);
 		this.acceleration = self.fworkAccel / 100;
-		this.hue = self.currentHue;
-		this.brightness = rand(50, 80);
+		this.hue = 239;
+		this.brightness = rand(30, 80);
 		this.alpha = rand(50, 100) / 100;
 		this.lineWidth = self.lineWidth;
 		this.targetRadius = 1;
