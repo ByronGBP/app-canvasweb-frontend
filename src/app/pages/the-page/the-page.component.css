@@ -7,7 +7,7 @@
 	z-index: -1;
 }
 #text {
-  top: 250px;
+  top: 150px;
   font-family: Futura, sans-serif;
   height: 80%;
   width: 100%;
@@ -31,5 +31,5 @@
 
 #button-canvas {
 
-  
+
 }

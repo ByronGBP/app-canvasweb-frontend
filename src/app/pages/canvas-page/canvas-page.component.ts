@@ -20,6 +20,7 @@ let KeyCode = {
   piano7: 'k',
   piano8: 'j',
   text: 'n',
+  text2: '¡',
   guitar:'z',
   guitar2:'x',
   bg:'b',
@@ -123,6 +124,10 @@ export class CanvasPageComponent implements OnInit {
 
       if (key === KeyCode.text) {
         document.getElementById('text').style.opacity = "1";
+      }
+
+      if (key === KeyCode.text2) {
+        document.getElementById('text-thanks').style.opacity = "1";
       }
 
       if (key === KeyCode.guitar) {
