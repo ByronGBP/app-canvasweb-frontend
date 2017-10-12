@@ -7,9 +7,10 @@
 	z-index: -1;
 }
 #text {
+  top: 250px;
   font-family: Futura, sans-serif;
-  min-height: 100vh;
-  width: 100vw;
+  height: 80%;
+  width: 100%;
   z-index: 1;
   color: #fff;
   text-transform: uppercase;
@@ -22,4 +23,13 @@
 }
 #text h1 {
 	opacity: 0.9
+}
+
+#welcome-div {
+  display: flex;
+}
+
+#button-canvas {
+
+  
 }
