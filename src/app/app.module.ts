@@ -12,6 +12,7 @@ import { PlaygroundPageComponent } from './pages/playground-page/playground-page
 import { PaintingPageComponent } from './pages/painting-page/painting-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CanvasPageComponent } from './pages/canvas-page/canvas-page.component';
+import { ThePageComponent } from './pages/the-page/the-page.component';
 
 import { PaintingCardComponent } from './components/painting-card/painting-card.component';
 import { CodeFieldComponent } from './components/code-field/code-field.component';
@@ -21,10 +22,10 @@ import { SafePipe } from './pipes/safe-pipe';
 import { PaintingListComponent } from './components/painting-list/painting-list.component';
 
 const routes: Routes = [
+  { path: '', component: ThePageComponent},
   { path: 'playground', component: PlaygroundPageComponent },
   { path: 'canvas', component: CanvasPageComponent },
   { path: 'home', component: HomePageComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'painting', children: [
     { path: '', redirectTo: '/', pathMatch: 'full'},
     { path: ':id', component: PaintingPageComponent }
@@ -43,6 +44,7 @@ const routes: Routes = [
     HomePageComponent,
     PaintingListComponent,
     CanvasPageComponent,
+    ThePageComponent,
   ],
   imports: [
     BrowserModule,

@@ -119,7 +119,6 @@ export class CanvasPageComponent implements OnInit {
       if (key == KeyCode.piano8) {
         this.C.demoRectangle(8);
         //this.C.demoCircle(8);
-
       }
 
       if (key === KeyCode.text) {
@@ -137,7 +136,6 @@ export class CanvasPageComponent implements OnInit {
       if (key === KeyCode.recursive){
         this.C.demoRecursive();
       }
-
   }
 
   constructor(private paintingService: PaintingService) {
@@ -146,14 +144,14 @@ export class CanvasPageComponent implements OnInit {
 
   ngOnInit() {
     this.C = new Canvas([]);
-  //   this.paintingService.getPaintings()
-  //     .subscribe(
-  //       (paintings) => {
-  //         this.paintings=[];
-  //         paintings.forEach((painting) => this.paintings.push(painting.code));
-  //         this.C = new Canvas(this.paintings);
-  //
-  //       }
-  //   );
+    // this.paintingService.getPaintings()
+    //   .subscribe(
+    //     (paintings) => {
+    //       this.paintings=[];
+    //       paintings.forEach((painting) => this.paintings.push(painting.code));
+    //       this.C = new Canvas(this.paintings);
+    //
+    //     }
+    // );
   }
 }
