@@ -21,7 +21,7 @@ export class Particle {
 
   draw(ctx) {
     ctx.beginPath();
-    ctx.fillStyle="#FFFFFF";
+    ctx.fillStyle="rgb(163, 235, 255)";
 
     ctx.arc(this.x, this.y, 5, 0, Math.PI*2, true);
     ctx.closePath();

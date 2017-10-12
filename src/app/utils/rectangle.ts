@@ -22,6 +22,8 @@ export class Rectangle {
   currentDimension;
   inversPosition;
 
+  gradient;
+
   constructor(public ctx, public position) {
     this.setupDimensions();
     this.setupPositions();
@@ -42,17 +44,11 @@ export class Rectangle {
     // this.ctx.shadowColor="rgba(77,166,255,0.5)";
     // //this.ctx.fillStyle = "rgba(0, 71, 179,0.5)";
     // this.ctx.fillStyle = "rgba(0,64,255,0.5)";
-    var gradient = this.ctx.createRadialGradient(this.currentDimension.halfWidth,
-                                                           3 * this.currentDimension.height / 4,
-                                                           this.currentDimension.halfWidth,
-                                                           3 * this.currentDimension.height / 4,
-                                                           this.currentDimension.halfHeight,
-                                                           0,);
-          gradient.addColorStop(0,"rgba(0,64,255,0.5");
-          gradient.addColorStop(1,"rgba(77,166,255,0.5)");
-          this.ctx.fillStyle = gradient;
-    this.ctx.fill();
     this.ctx.closePath();
+
+    this.ctx.fillStyle = this.gradient;
+
+    this.ctx.fill();
 
   }
 
@@ -81,7 +77,6 @@ export class Rectangle {
   }
 
   private getHightForEffect() {
-    //Este crea un rectangulo hasta el final;
     return this.y - this.finalPosition;
   }
 
@@ -92,6 +87,15 @@ export class Rectangle {
     this.y = this.currentDimension.height;
 
     this.finalPosition = this.currentDimension.ninethHeight * this.position;
+
+    this.gradient = this.ctx.createRadialGradient(this.currentDimension.halfWidth,
+                                                           3 * this.currentDimension.height / 4,
+                                                           this.currentDimension.halfWidth,
+                                                           3 * this.currentDimension.height / 4,
+                                                           this.currentDimension.halfHeight,
+                                                           0,);
+          this.gradient.addColorStop(0,"rgba(0,64,255,0.5");
+          this.gradient.addColorStop(1,"rgba(77,166,255,0.5)");
   }
 
   private setupDimensions() {

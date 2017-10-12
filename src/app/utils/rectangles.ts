@@ -16,6 +16,7 @@ export class Rectangles {
     this.updateCircles();
     this.checkCircles();
     this.drawCircles();
+
   }
 
   ended() {
@@ -35,6 +36,7 @@ export class Rectangles {
 
   clearCanvas() {
     this.ctx.clearRect(0,0, this.currentDimension.width, this.currentDimension.height);
+
   }
 
   private updateCircles() {

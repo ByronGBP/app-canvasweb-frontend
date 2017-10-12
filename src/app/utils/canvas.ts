@@ -78,7 +78,7 @@ export class Canvas {
 
     this._intervalBg = setInterval(() => {
       this.spiral.spiral();
-    }, 1000);
+    }, 55);
 
     this.spiral.spiral();
   }

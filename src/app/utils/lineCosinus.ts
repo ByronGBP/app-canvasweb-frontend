@@ -41,8 +41,9 @@ export class LineCosinus {
 
 
   draw() {
+    //this.ctx.moveTo(this.posX, this.posY);
     this.ctx.lineTo(this.life, this.units * this.posY + this.xAxis);
-    this.ctx.strokeStyle = 'white';
+    this.ctx.strokeStyle = 'rgb(71, 157, 255)';
     this.ctx.stroke();
 
   }
